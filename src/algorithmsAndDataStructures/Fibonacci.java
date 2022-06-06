@@ -12,7 +12,7 @@ public class Fibonacci {
         System.out.println(fibNaive(n, mem));
     }
 
-    private static long fibNaive(int n, long mem[]) {
+    public static long fibNaive(int n, long mem[]) {
 
         if (mem[n] != -1) return mem[n];
 
