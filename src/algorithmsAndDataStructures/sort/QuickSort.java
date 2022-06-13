@@ -13,7 +13,7 @@ public class QuickSort {
         System.out.println(Arrays.toString(array));
     }
 
-    private static void quickSort(int[] array, int from, int to) {
+    public static void quickSort(int[] array, int from, int to) {
         if (from < to) {
             int right = to;
             int left = from;
