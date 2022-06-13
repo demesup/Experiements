@@ -1,4 +1,4 @@
-package javaForBeginersAlishev;
+package generics;
 
 public class Animal {
     private final int id;
