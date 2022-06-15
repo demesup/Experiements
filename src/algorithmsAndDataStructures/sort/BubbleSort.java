@@ -6,11 +6,11 @@ import java.util.Random;
 public class BubbleSort {
     public static void main(String[] args) {
         int[] array = createArray();
-
         System.out.println(Arrays.toString(array));
-        array = bubbleSort(array);
+        bubbleSort(array);
         System.out.println(Arrays.toString(array));
     }
+
 
     public static int[] createArray() {
         Random random = new Random();
@@ -22,7 +22,7 @@ public class BubbleSort {
         return array;
     }
 
-    private static int[] bubbleSort(int[] array) {
+    public static void bubbleSort(int[] array) {
         boolean isSorted = false;
         while (!isSorted){
             isSorted = true;
@@ -35,8 +35,5 @@ public class BubbleSort {
                 }
             }
         }
-
-
-        return array;
     }
 }

@@ -1,7 +1,7 @@
 package algorithmsAndDataStructures.sort;
 
+
 import java.util.Arrays;
-import java.util.Random;
 
 import static algorithmsAndDataStructures.sort.BubbleSort.createArray;
 
@@ -11,10 +11,8 @@ public class SelectionSort {
         System.out.println(Arrays.toString(array));
         selectionSort(array);
         System.out.println(Arrays.toString(array));
-
     }
-
-    private static void selectionSort(int[] array) {
+    public static void selectionSort(int[] array) {
         for (int j = 0; j < array.length; j++) {
             for (int i = j; i < array.length; i++) {
                 if (array[i] < array[j]){

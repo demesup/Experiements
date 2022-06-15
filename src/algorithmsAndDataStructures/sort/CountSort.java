@@ -2,11 +2,13 @@ package algorithmsAndDataStructures.sort;
 
 import java.util.Arrays;
 
+import static algorithmsAndDataStructures.sort.BubbleSort.createArray;
 import static algorithmsAndDataStructures.sort.QuickSort.quickSort;
 
 public class CountSort {
-    public static void main(String[] params) {
-        int[] array = new int[] {64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
+    public static void main(String[] args) {
+        int[] array = createArray();
+        System.out.println(Arrays.toString(array));
         countSort(array);
         System.out.println(Arrays.toString(array));
     }
@@ -16,20 +18,18 @@ public class CountSort {
 
         int[] count = new int[MAX_VALUE];
 
-        for (int i = 0; i < array.length; i++) {
-            count[array[i]] = count[array[i]] + 1;
+        for (int k : array) {
+            count[k] = count[k] + 1;
         }
 
-        int arrayindex = 0;
+        int arrayIndex = 0;
         for (int i = 0; i < count.length; i++) {
             for (int j = 0; j < count[i]; j++) {
-                array[arrayindex] = i;
-                arrayindex++;
+                array[arrayIndex] = i;
+                arrayIndex++;
             }
         }
     }
-
-//performance test
 
     private static void measureTime(Runnable task) {
         long startTime = System.currentTimeMillis();

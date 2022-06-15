@@ -1,12 +1,13 @@
 package algorithmsAndDataStructures.sort;
 
+
 import java.util.Arrays;
 
 import static algorithmsAndDataStructures.sort.BubbleSort.createArray;
 
 public class QuickSort {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         int[] array = createArray();
         System.out.println(Arrays.toString(array));
         quickSort(array, 0, array.length - 1);

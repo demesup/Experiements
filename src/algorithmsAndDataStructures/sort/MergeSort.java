@@ -2,15 +2,18 @@ package algorithmsAndDataStructures.sort;
 
 import java.util.Arrays;
 
+import static algorithmsAndDataStructures.sort.BubbleSort.createArray;
+
 public class MergeSort {
-    public static void main(String[] params) {
-        int[] array = new int[]{15, 78, 89, 9, 12, 12546, 8, 879, 16, 54, 1};
+
+    public static void main(String[] args) {
+        int[] array = createArray();
         System.out.println(Arrays.toString(array));
-        array = mergeSort(array);
+        mergeSort(array);
         System.out.println(Arrays.toString(array));
     }
 
-    public static int[] mergeSort(int[] array) {
+    public static void mergeSort(int[] array) {
         int[] tmp;
         int[] currentSrc = array;
         int[] currentDest = new int[array.length];
@@ -28,7 +31,6 @@ public class MergeSort {
             size = size * 2;
             System.out.println(Arrays.toString(currentSrc));
         }
-        return currentSrc;
     }
 
     private static void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
