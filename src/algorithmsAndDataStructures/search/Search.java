@@ -1,4 +1,4 @@
-package algorithmsAndDataStructures;
+package algorithmsAndDataStructures.search;
 
 public class Search {
 

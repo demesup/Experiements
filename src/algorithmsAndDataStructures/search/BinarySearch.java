@@ -1,4 +1,4 @@
-package algorithmsAndDataStructures;
+package algorithmsAndDataStructures.search;
 
 import java.util.ArrayList;
 import java.util.Arrays;
