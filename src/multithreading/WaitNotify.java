@@ -6,20 +6,29 @@ public class WaitNotify {
     public static void main(String[] args) {
         BlockingQueue queue = new BlockingQueue();
 
-        Thread worker = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    Runnable task = queue.get();
+        Thread worker = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                Runnable task;
+                try {
+                    task = queue.get();
                     task.run();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
         });
         worker.start();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             queue.put(getTask());
         }
 
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
+        worker.interrupt();
     }
 
     public static Runnable getTask() {
@@ -30,7 +39,7 @@ public class WaitNotify {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
+                    Thread.currentThread().interrupt();
                 }
                 System.out.println("TAsk finished: " + this);
             }
@@ -40,13 +49,9 @@ public class WaitNotify {
     static class BlockingQueue {
         ArrayList<Runnable> tasks = new ArrayList<>();
 
-        public synchronized Runnable get() {
+        public synchronized Runnable get() throws InterruptedException {
             while (tasks.isEmpty()) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
+                wait();
             }
             Runnable task = tasks.get(0);
             tasks.remove(task);
