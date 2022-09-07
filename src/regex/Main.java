@@ -55,10 +55,16 @@ public class Main {
 
     }
 
+    private static void checkIP(String s) {
+        Pattern pattern = Pattern.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+        System.out.printf("%20s is %3s a name\n", s, getIs(s, pattern));
+
+    }
+
 
     private static void checkName3upTo256(String s) {
         Pattern pattern = Pattern.compile("^[А-ЩЬЮЯҐЄІЇа-щьюяґєіїA-Za-z]{3,256}$");
-        System.out.printf("%20s is %3s not a name\n", s, getIs(s, pattern));
+        System.out.printf("%20s is %3s a name\n", s, getIs(s, pattern));
 
     }
 
