@@ -15,6 +15,7 @@ public class Parser {
     }
 
     private static String parse(String str) {
+        //for numbers ...0.01, 0.1, 10, 100...
         if (Pattern.compile("^(?:(?!\\.)0\\.0*1|10*)$").matcher(str).matches()) return str;
         try {
             Integer.parseInt(str);
