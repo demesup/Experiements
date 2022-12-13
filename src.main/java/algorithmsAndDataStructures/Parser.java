@@ -14,21 +14,22 @@ public class Parser {
         }
     }
 
-    private static String parse(String str) {
+    public static String parse(String str) {
+        str= str.replaceAll(" ","");
         //for numbers ...0.01, 0.1, 10, 100...
-        if (Pattern.compile("^(?:(?!\\.)0\\.0*1|10*)$").matcher(str).matches()) return str;
-        try {
-            Integer.parseInt(str);
-            return "1" + str.replaceAll("\\d", "0");
-        } catch (Exception i) {
-            try {
-                Float.parseFloat(str);
-                if (str.length() == 3) return "1";
-                return str.substring(0, str.lastIndexOf("0")).replaceAll("\\d", "0") + "1";
-            } catch (Exception e) {
-                return "Wrong number";
-            }
+        if (Pattern.compile("^(?:(?!\\.)0\\.0*1|10*)$").matcher(str).matches() || str.equals("0")){
+            return str;
         }
+        if (Pattern.compile("^\\d*$").matcher(str).matches()){
+            return "1" + str.replaceAll("\\d", "0");
+        }
+        if (Pattern.compile("^[1-9]*\\.\\d*$").matcher(str).matches()) {
+            return  "1" + str.substring(0,str.indexOf(".")).replaceAll("\\d", "0");
+        }
+        if (Pattern.compile("^0\\.\\d*$").matcher(str).matches()) {
+            if (str.length() == 3) return "1";
+            return str.substring(0, str.lastIndexOf("0")).replaceAll("\\d", "0") + "1";
+        }
+                return "Wrong number";
     }
-
 }
