@@ -3,15 +3,26 @@ package algorithmsAndDataStructures;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.MathContext;
 import java.util.regex.Pattern;
+
+import static java.lang.Math.ceil;
+import static java.lang.Math.log10;
 
 public class Parser {
     public static void main(String[] args) throws IOException {
         BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
         String i;
         while (!(i = scanner.readLine()).isEmpty()) {
-            System.out.println(parse(i));
+//            System.out.println(parse(i));
+
+            System.out.println(getAnInt(i));
         }
+    }
+
+    private static Number getAnInt(String s) {
+        var x = Float.parseFloat(s);
+        return ceil(log10(x));
     }
 
     public static String parse(String str) {
