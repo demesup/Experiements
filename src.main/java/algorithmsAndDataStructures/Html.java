@@ -2,6 +2,8 @@ package algorithmsAndDataStructures;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,11 +12,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import static org.example.hackerrank.EnglishReplace.createPathFromFileName;
+import static hackerrank.EnglishReplace.createPathFromFileName;
+
 
 public class Html {
-    public static void main(String[] args) throws IOException {
-        String content = readWholeFile("D:\\IdeaProjects\\practice2\\src\\main\\resources\\html-soutce.txt");
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        String content = readWholeFile(Objects.requireNonNull(Html.class.getClassLoader().getResource("html-soutce.txt")).toURI());
         try (FileWriter writer = new FileWriter("D:\\IdeaProjects\\practice2\\src\\main\\resources\\englishToWrite.txt")) {
             writer.write(content);
         } catch (IOException e) {
@@ -22,7 +25,7 @@ public class Html {
         }
     }
 
-    public static String readWholeFile(String file) throws IOException {
+    public static String readWholeFile(URI file) throws IOException {
         StringBuilder builder = new StringBuilder();
         Pattern pattern = Pattern.compile("<span class=\"\">.+?</span");
         Path filePath = createPathFromFileName(file);
